@@ -1,8 +1,35 @@
 body {
-  padding: 50px;
+  padding: 5px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #1c0c4f;
+  color: white;
 }
 
 a {
   color: #00B7FF;
+}
+
+
+#headerRow {
+  background-color: crimson;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#titleText {
+  font-size: 30px;
+  color: white;
+  font-family: Adamina, serif;
+  border-bottom: 2px;
+  text-align: center;
+}
+
+
+#bodyContainer {
+  margin-top: 20px;
+}
+
+.thumbnail {
+  width: 60px;
+  height: 60px;
 }

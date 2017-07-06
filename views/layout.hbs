@@ -1,10 +1,40 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    {{{body}}}
-  </body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" media="screen"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+
+</head>
+<body>
+
+<div class="container-fluid">
+
+    <div id="headerRow" class="row">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <button type="button" class="btn btn-default" aria-label="Left Align">
+                <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+            </button>
+
+        </div>
+
+        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+            <span id="titleText">
+                infiniteMe
+            </span>
+        </div>
+    </div>
+
+</div>
+
+
+{{{body}}}
+</body>
 </html>
