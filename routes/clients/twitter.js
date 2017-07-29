@@ -2,19 +2,30 @@
  * Created by ryanhoyda on 7/9/17.
  */
 
-//require twitter
-var Twitter = require("twitter");
-
-//require keys
-var keys = require("./keys.js");
-//console.log(keys);
-
-//creating new twitter client, and passing keys.twitterKeys to constructor
-var twitter = new Twitter(keys.twitterKeys);
-//console.log(twitter);
 
 
-//I'm a comment
+var oauth = require('oauth');
+
+function TwitterClient(oauth, accessToken, accessTokenSecret){
+    this.oauth = oauth;
+    this.accessToken = accessToken;
+    this.accessTokenSecret;
+
+    this.updateStatus = function(status, callback){
+        this.oauth.post(
+            "https://api.twitter.com/1.1/statuses/update.json",
+        this.accessToken,
+        this.accessTokenSecret,
+            {"status": status},
+        function(error, data){
+            if (callback){
+                callback(error, data);
+            }
+        });
+    }
+}
+
+
 
 var TwitterClient = {
    profileLink: '',

@@ -77,7 +77,7 @@ router.get('/', function(req, res){
 
 router.get('/postmytweet', function(req, res){
     consumer.post("https://api.twitter.com/1.1/statuses/update.json",
-        req.session.oauthRequestToken, req.session.oauthRequestTokenSecret,
+        req.session.oauthAccessToken, req.session.oauthAccessTokenSecret,
         {"status":"Kittes scratch things"},
         function(error, data) {
             if(error)
