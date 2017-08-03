@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var keys = require('./clients/keys.js');
 var inspect = require('util-inspect');
+var TwitterClient = require('./clients/twitter.js');
 //using cookieParser
 router.use(cookieParser());
 
@@ -52,6 +53,7 @@ router.get('/callback', function(req, res){
             req.session.oauthAccessToken = oauthAccessToken;
             req.session.oauthAccessTokenSecret = oauthAccessTokenSecret;
 
+            //res.redirect('/trends');
             res.redirect('/postmytweet');
         }
     });
@@ -75,16 +77,46 @@ router.get('/', function(req, res){
     }
 });
 
+router.get('/trends', function(req, res){
+    var tweeter = new TwitterClient(consumer, req.session.oauthAccessToken, req.session.oauthAccessTokenSecret);
+    tweeter.trends(1, function(error, data, response){
+        if(error){
+            console.log(require('sys').inspect(error));
+        } else {
+            console.log(data);
+            console.log(response);
+        }
+    });
+
+//     consumer.get("https://api.twitter.com/1.1/trends/place.json?id=1",
+//     req.session.oauthAccessToken, req.session.oauthAccessTokenSecret, function(error, data){
+//             if(error){
+//                 console.log(require('sys').inspect(error));
+//             } else {
+//                 console.log(data);
+//             }
+//     });
+});
+
+
 router.get('/postmytweet', function(req, res){
-    consumer.post("https://api.twitter.com/1.1/statuses/update.json",
-        req.session.oauthAccessToken, req.session.oauthAccessTokenSecret,
-        {"status":"Kittes scratch things"},
-        function(error, data) {
-            if(error)
-                console.log(require('sys').inspect(error))
-            else
-                console.log(data)
-        });
+    var tweeter = new TwitterClient(consumer, req.session.oauthAccessToken, req.session.oauthAccessTokenSecret);
+    tweeter.updateStatus("Hello Everyone, Happy Friday", function(error, data){
+        if(error){
+            console.log(error);
+        }else{
+            console.log(data);
+        }
+    })
+    // consumer.post("https://api.twitter.com/1.1/statuses/update.json",
+    //     req.session.oauthAccessToken, req.session.oauthAccessTokenSecret,
+    //     {"status":"Kittes scratch things"},
+    //     function(error, data) {
+    //         if(error)
+    //             console.log(require('sys').inspect(error));
+    //         else
+    //             console.log(data)
+    //     });
 });
 
 module.exports = router;
