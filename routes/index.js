@@ -54,7 +54,7 @@ router.get('/callback', function(req, res){
             req.session.oauthAccessTokenSecret = oauthAccessTokenSecret;
 
             //res.redirect('/trends');
-            res.redirect('/postmytweet');
+            res.redirect('/');
         }
     });
 });
@@ -77,49 +77,14 @@ router.get('/', function(req, res){
     }
 });
 
-router.get('/trends', function(req, res){
-    var tweeter = new TwitterClient(consumer, req.session.oauthAccessToken, req.session.oauthAccessTokenSecret);
-    tweeter.trends(1, function(error, data, response){
-        if(error){
-            console.log(require('sys').inspect(error));
-        } else {
-            console.log(data);
-            console.log(response);
-        }
-    });
 
-//     consumer.get("https://api.twitter.com/1.1/trends/place.json?id=1",
-//     req.session.oauthAccessToken, req.session.oauthAccessTokenSecret, function(error, data){
-//             if(error){
-//                 console.log(require('sys').inspect(error));
-//             } else {
-//                 console.log(data);
-//             }
-//     });
-});
-
-
-router.get('/postmytweet', function(req, res){
-    var tweeter = new TwitterClient(consumer, req.session.oauthAccessToken, req.session.oauthAccessTokenSecret);
-    tweeter.updateStatus("Hello Everyone, Happy Friday", function(error, data){
-        if(error){
-            console.log(error);
-        }else{
-            console.log(data);
-        }
-    })
-    // consumer.post("https://api.twitter.com/1.1/statuses/update.json",
-    //     req.session.oauthAccessToken, req.session.oauthAccessTokenSecret,
-    //     {"status":"Kittes scratch things"},
-    //     function(error, data) {
-    //         if(error)
-    //             console.log(require('sys').inspect(error));
-    //         else
-    //             console.log(data)
-    //     });
-});
 
 module.exports = router;
+
+
+
+
+
 
 
 //---------------------------------------------//code reference//------------------------------------------------------------------------------------------------//
@@ -129,3 +94,106 @@ module.exports = router;
 //https://stackoverflow.com/questions/21170531/desktop-applications-only-support-the-oauth-callback-value-oob-oauth-request-t
 
 //---------------------------------------------------------------------------------------------------------------------------------------------//
+
+
+
+
+
+
+//------------------------------------------// test code //---------------------------------------------
+
+
+// router.get('/trends', function(req, res){
+//     var tweeter = new TwitterClient(consumer, req.session.oauthAccessToken, req.session.oauthAccessTokenSecret);
+//     tweeter.trends(1, function(error, data, response){
+//         if(error){
+//             console.log(require('sys').inspect(error));
+//         } else {
+//             console.log(data);
+//             console.log(response);
+//         }
+//     });
+//
+// //     consumer.get("https://api.twitter.com/1.1/trends/place.json?id=1",
+// //     req.session.oauthAccessToken, req.session.oauthAccessTokenSecret, function(error, data){
+// //             if(error){
+// //                 console.log(require('sys').inspect(error));
+// //             } else {
+// //                 console.log(data);
+// //             }
+// //     });
+// });
+//
+//
+// router.get('/postmytweet', function(req, res){
+//     var tweeter = new TwitterClient(consumer, req.session.oauthAccessToken, req.session.oauthAccessTokenSecret);
+//     tweeter.updateStatus("Hello Everyone, Happy Friday", function(error, data){
+//         if(error){
+//             console.log(error);
+//         }else{
+//             console.log(data);
+//         }
+//     })
+//     // consumer.post("https://api.twitter.com/1.1/statuses/update.json",
+//     //     req.session.oauthAccessToken, req.session.oauthAccessTokenSecret,
+//     //     {"status":"Kittes scratch things"},
+//     //     function(error, data) {
+//     //         if(error)
+//     //             console.log(require('sys').inspect(error));
+//     //         else
+//     //             console.log(data)
+//     //     });
+// });
+//
+//
+// router.get('/updateprofile', function(req, res){
+//     var tweeter = new TwitterClient(consumer, req.session.oauthAccessToken, req.session.oauthAccessTokenSecret);
+//     tweeter.updateProfile(function(error, data){
+//         if(error){
+//             console.log(error);
+//         }else{
+//             console.log(data);
+//         }
+//     },"I like Vanilla");
+//
+//
+//
+//     // consumer.post("https://api.twitter.com/1.1/account/update_profile.json",
+//     //     req.session.oauthAccessToken, req.session.oauthAccessTokenSecret,
+//     //     {"description":"I like chocolate"},
+//     //     function(error, data){
+//     //         if(error)
+//     //             console.log(require('sys').inspect(error));
+//     //         else
+//     //             console.log(data)
+//     //     });
+// });
+//
+//
+// router.get('/findusers', function(req, res){
+//     var tweeter =new TwitterClient(consumer, req.session.oauthAccessToken, req.session.oauthAccessTokenSecret);
+//     tweeter.findUsers("Twitter%20API", function(error, data){
+//             if(error){
+//                 console.log(error);
+//             }else{
+//                 console.log(data);
+//             }
+//         },10,true);
+// //     consumer.get("https://api.twitter.com/1.1/users/search.json?q=Twitter%20API&page=1&count=3",
+// //         req.session.oauthAccessToken, req.session.oauthAccessTokenSecret, function(error, data){
+// //             if(error){
+// //                 console.log(require('sys').inspect(error));
+// //             }else{
+// //                 console.log(data);
+// //             }
+// //         });
+// //
+// });
+//
+
+
+
+
+
+
+
